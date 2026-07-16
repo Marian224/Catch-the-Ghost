@@ -1,0 +1,112 @@
+body {
+  background-color: #1a1a2e;
+  color: #fff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+/* Основний контейнер, який вирівнює елементи по вертикалі */
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+h1 {
+  margin: 0;
+  font-size: 2rem;
+  color: #e94560;
+  text-shadow: 0 0 10px rgba(233, 69, 96, 0.5);
+}
+
+/* Панель рахунку та життів */
+.stats-bar {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 450px;
+  background-color: #16213e;
+  padding: 12px 20px;
+  border-radius: 10px;
+  box-sizing: border-box;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+#lives {
+  color: #ff4757;
+}
+
+#score {
+  color: #2ed573;
+}
+
+/* Стильна неонова кнопка старту */
+.btn-start {
+  padding: 12px 30px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  background-color: #e94560;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(233, 69, 96, 0.4);
+  transition: background 0.2s, transform 0.1s;
+}
+
+.btn-start:hover {
+  background-color: #ff5270;
+}
+
+.btn-start:active {
+  transform: scale(0.95);
+}
+
+/* Ігрова арена (Spooky Theme) */
+.game-arena {
+  width: 450px;
+  height: 450px;
+  background-color: #0f3460;
+  border: 4px solid #16213e;
+  border-radius: 15px;
+  position: relative; /* КРИТИЧНО: дозволяє абсолютно позиціонувати привида відносно цієї арени */
+  overflow: hidden;   /* Захищає від того, щоб привид вилізав за круглі куточки */
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.6);
+}
+
+/* Стиль самого привида */
+.ghost {
+  font-size: 3.5rem;
+  width: 60px;
+  height: 60px;
+  line-height: 60px;
+  text-align: center;
+  position: absolute; /* Дозволяє нам керувати координатами top та left через JS */
+  cursor: pointer;
+  user-select: none;  /* Забороняє виділяти текст емодзі при частих кліках */
+  display: none;      /* Початково привид прихований */
+  transition: transform 0.1s ease; /* Швидкий ефект для поп-анімації */
+}
+
+/* Анімація легкого погойдування для привида, коли він активний */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+  100% { transform: translateY(0px); }
+}
+
+.ghost.active {
+  display: block;
+  animation: float 0.6s ease-in-out infinite;
+}
+
+/* Ефект швидкого стиснення при кліку */
+.ghost.caught {
+  transform: scale(0.5);
+}
